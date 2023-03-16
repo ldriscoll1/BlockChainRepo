@@ -96,3 +96,8 @@ If you get an error similar to this:
 }
 ```
 Then run: `npm run clean`
+
+
+## git remote add origin git@github.com:alexhkurz/introduction-to-smart-contracts.git
+## git fetch origin
+## git merge origin/main
