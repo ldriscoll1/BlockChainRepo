@@ -5,13 +5,13 @@ import "forge-std/Test.sol";
 import "contracts/SnailContract.sol";
 
 contract ContractTest is Test {
-    SnailContract snailcontract;
-    // function setUp() public {
-    //     address[] memory playerAddresses;
-    //     playerAddresses[0] = 0x32fb216dED836aBAa8af2F6Dda2629b30b768aF3;
-    //     playerAddresses[1] = 0x31B4A8caE97f4eE083E03F41302D2082Ee75031A;
-    //     snailcontract = new SnailContract(1 , playerAddresses);
-    //     // assert(snailcontract.snail[0].owner == playerAddresses[0], "Owner should be player 1");
-    // }
+    function testContract() public {
+        address[] memory playerAddresses = new address[](2);
+        playerAddresses[0] = address(1);
+        playerAddresses[1] = address(2);
+        SnailContract snailcontract = new SnailContract(1 , playerAddresses);
+        address firstOwner = snailcontract.getSnailOwner(0);
+        assertEq(firstOwner, address(1));
+    }
     
 }

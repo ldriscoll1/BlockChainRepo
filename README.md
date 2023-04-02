@@ -1,18 +1,18 @@
 # README
+This is the ReadMe for the Snail Race Project it will contain all the information needed to run the project.
+## Testing the Project
+  
+  In order to test the project you will need to follow some steps:
+  - Follow the Account Setup section
+  - Follow the Required Steps for Testing and Deployment
+  - Run `npm run compile`
+  - Follow the steps in the Hardhat Tasks and Deploying the Project section
+  - Follow the video tutorial to test the project using Etherscan and Metamask
 
-A course at Chapman University Spring 2023 as a section of CPSC 298, the Computer Science Colloquium, which offers one credit courses (one lecture per week) on a current topic of interest. The title of this section is
-
-## Introduction to Smart Contracts
-
-(created by [Alexander Kurz](https://www.chapman.edu/our-faculty/alexander-kurz) and [Ronan Kearns](https://www.linkedin.com/in/ronank/) from Chapman and [Jeff Turner](https://www.linkedin.com/in/composedao/) and Steve Preston from ComposeDAO)
-
-**Lectures:** Feb 1 - May 10 in Keck 153, Wed 12-1pm. No classes March 22 (Spring break).  
-**Office Hours:** Keck Center - Swenson #N305 Huddle Space (I may have to let you in, send me an email).  
-
-The purpose of the course is to give a hands-on introduction in how to develop a dApp using smart contracts.
-
-- [Lecture by lecture](lectures/lecture-by-lecture.md)
-
+## Account Setup
+  ### Metamask
+  ### Getting Accounts for API Keys
+  ### Getting Repo Setup
 ## Required Steps for Testing and Deployment
 
 Install Foundry -> https://book.getfoundry.sh/getting-started/installation.html
@@ -42,13 +42,20 @@ npm run clean # runs hardhat clean
 npm run test # runs unit tests via Forge
 ```
 
-## Hardhat Tasks
+
+## Hardhat Tasks and Deploying the Project
 
 To deploy your contract use
 
 ```
-npx hardhat --network goerli deploy --contract <contract_name> 
+npx hardhat --network goerli deploy --contract <contract_name> --snailcount <constructor_argument> --addresses <constructor_argument>
 ```
+The snailCount argument takes in the number of snails you want to create. The addresses argument takes in the addresses for the owners of these snails. This is a comma separated list of addresses.
+For example:
+```
+npx hardhat --network goerli deploy --contract SnailContract --snailcount 1 --addresses "0x32fb216dED836aBAa8af2F6Dda2629b30b768aF3","0x9298f815C95DDf79c9724B5e30d52DB292c96086"
+```
+This example creates one snail that has two potential owners that have the addresses 0x32fb216dED836aBAa8af2F6Dda2629b30b768aF3 and 0x9298f815C95DDf79c9724B5e30d52DB292c96086.
 
 If you get `Error: insufficient funds` go to [goerlifaucet](https://goerlifaucet.com/), use your Alchemy login, and enter the wallet address you get from your Metamask wallet. If everything worked you see in your terminal
 
@@ -57,32 +64,28 @@ If you get `Error: insufficient funds` go to [goerlifaucet](https://goerlifaucet
 To "verify" your contract run
 
 ```
-npx hardhat --network goerli verify <deployed_contract_address> 
+npx hardhat --network goerli verify --constructor-args arguments.js <deployed_contract_address> 
 ```
+
+In order to verify your contract you will need to update arguments.js to reflect your input, an example of the arguments.js file is provided in arguments.js.
+These arguments must be the same as the ones you used to deploy your contract.
 
 If you get `Error [...] no API token was found` go to [Etherscan](https://etherscan.io/), create an account, get an API-key and add it to your `.env` 
 
 Now you should be able to interact via your Metamask wallet with your contract on the testnetwork.
 
-Summary of hardhat commands:
-
-```
-npx hardhat # lists all available hardhat tasks
-
-npx hardhat --network <network_name> balance --account <account_address> # retrieves account balance on specified network
-
-npx hardhat --network <network_name> deployproxy --contract <contract_name> # Deploys provided upgradeable contract to specified network. Proxy type is UUPS
-
-npx hardhat --network <network_name> flatten <contract_file_path> > <output_file_path> # Flattens contracts and dependecies to output file
-
-npx hardhat --network <network_name> initialize --contract <contract_name> --contract-address <deployed_contract_address> # Initializes provided upgradeable contract on specified network
-
-npx hardhat --network <network_name> validateupgrade --contract <new_contract_name> --proxy-address <deployed_proxy_contract_address> # Validates new implementation contract without deploying it
-
-npx hardhat --network <network_name> deploy --contract <contract_name> --arg <constructor_argument> # Deploys given contract to specified network
-
-npx hardhat --network <network_name> verify <deployed_contract_address> <constructor_argument> # verifies source code on Etherscan or BSCSCAN. Supported networks are Goerli, BSC, BSC Testnet
-```
+## Video Tutorial
+1. In this tutorial we will be using 2 wallets on the same metamask account, this should be done between two different people, but this is for the sake of the tutorial.
+2. The snails, are indexed by a SnailID which starts at 0 and goes to the snailAmount-1. This is the way how the user can access their snail. In this tutorial there will be two users 0x32, and 0x92 who both own the first snail at index 0.
+3. First, we deploy the contract, and then verify it on Etherscan.
+4. Then we will interact with the contract that is deployed using the Metamask wallets.
+5. When the contract is deployed each snail is given a startingTime, and a starting position of 0.
+6. The snail is moved between 0x32 who is the currentOwner of the snail to 0x92 which increments the position to 1.
+7. The snail is then moved back to 0x32 from 0x92 which increments the position to 2.
+8. This transaction is done a total of 5 times and once it reaches 5 transactions the snail gets to the 5th position meaning it has finished the race.
+9. Once the snail has finished the race it cannot move anymore, and its final time is recorded to find its total time on the track.
+<!-- Add in video into this section -->
+[Demo Video](https://www.youtube.com/watch?v=MId7pAo-huc)
 
 ## Troubleshooting
 
@@ -98,6 +101,3 @@ If you get an error similar to this:
 Then run: `npm run clean`
 
 
-## git remote add origin git@github.com:alexhkurz/introduction-to-smart-contracts.git
-## git fetch origin
-## git merge origin/main
