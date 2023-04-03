@@ -55,6 +55,8 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   REPORT_GAS=
   REPORT_SIZE=
   ```
+  - Run `npm i`
+  
 ## Required Steps for Testing and Deployment
 
 Install Foundry -> https://book.getfoundry.sh/getting-started/installation.html
