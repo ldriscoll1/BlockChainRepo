@@ -11,7 +11,34 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
 
 ## Account Setup
   ### Metamask
+  - Go to metamask.io and download the extension
+  - Create a new wallet
+  - Secure the wallet and save the secret recovery phrase somewhere safe
+  - Change the network to Goerli Test Network (network select is at the top)
+
   ### Getting Accounts for API Keys
+  #### MetaMask
+  - Open the MetaMask Chrome Extension and log in
+  - Click on the 3 dots in the top right corner
+  - Click on "Account Details"
+  - Click on "Export Private Key"
+
+  #### Etherscan
+  - Go to [Etherscan](https://etherscan.io/)
+  - Create an account
+  - Go to [Etherscan API](https://etherscan.io/myapikey)
+  - This can also be found by clicking on your username in the top right corner and then clicking on "API Keys"
+  - Create a new key by hitting the add button
+
+  #### Alchemy
+  - Go to [Alchemy](https://www.alchemy.com/)
+  - Create an account
+  - Create a new app
+  - For the chain select Ethereum
+  - For the network select Goerli
+  - Open the app from dashboard
+  - Click "VIEW KEY" to get the API key
+
   ### Getting Repo Setup
 ## Required Steps for Testing and Deployment
 
