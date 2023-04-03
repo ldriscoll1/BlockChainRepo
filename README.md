@@ -15,6 +15,8 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   - Create a new wallet
   - Secure the wallet and save the secret recovery phrase somewhere safe
   - Change the network to Goerli Test Network (network select is at the top)
+    - Might need to go to settings > advanced > show test networks.
+  
 
   ### Getting Accounts for API Keys
   #### MetaMask
@@ -56,6 +58,8 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   REPORT_SIZE=
   ```
   - Run `npm i`
+  You may need to install node.js
+  ->https://kinsta.com/blog/how-to-install-node-js/#1-download-macos-installer
   
 ## Required Steps for Testing and Deployment
 
