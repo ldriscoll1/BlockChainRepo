@@ -14,6 +14,12 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   8. Press the transact button to deploy the contract
   9. Scroll down to the deployed contract and click the drop down array (Here you can interact with the contract)
   10. View this video for a tutorial [video](https://youtu.be/XIcpeXZJlLI)
+### Testing the Contract with Remix
+  1. Do 5 Transactions back and forth with one snail and check if it is a winner.
+  2. Try to transfer a snail that you currently own.
+  3. Try to transfer a snail that has won.
+  4. Try to transfer a snail with an address(a third extra address) that is not a potential owner.
+  5. Deploy a contract with 2 snails and 4 addresses and try to move each of the snails with their respective addresses Snail at snailID 0 can be moved by the first two addresses and snail at snailID 1 can be moved by the second two addresses.
 
 ## Testing the Project
   
