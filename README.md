@@ -40,6 +40,21 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   - Click "VIEW KEY" to get the API key
 
   ### Getting Repo Setup
+  - Clone the repo
+  - Change the .env.example to .env
+  - Fill in the .env file with the information from the previous steps
+  ```
+  GOERLI_PRIVATE_KEY= MetaMask Private Key
+  BNB_TESTNET_PRIVATE_KEY= MetaMask Private Key
+  BNB_MAINNET_PRIVATE_KEY= MetaMask Private Key
+  MORDOR_PRIVATE_KEY= MetaMask Private Key
+  ALCHEMY_API_KEY= Alchemy API Key
+  ALCHEMY_BLOCK=
+  ETHERSCAN_API_KEY= Etherscan API Key
+  BSCSCAN_API_KEY=
+  REPORT_GAS=
+  REPORT_SIZE=
+  ```
 ## Required Steps for Testing and Deployment
 
 Install Foundry -> https://book.getfoundry.sh/getting-started/installation.html
