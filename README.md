@@ -1,7 +1,7 @@
 # README
 This is the ReadMe for the Snail Race Project it will contain all the information needed to run the project.
 ## Important Announcement
-  Currently due to https://goerlifaucet.com/ only distributing 0.02 eth a day and our project needed 1.Goerli to create a contract
+  Currently due to https://goerlifaucet.com/ only distributing 0.02 eth a day and our project needed 0.15 Goerli to deploy a contract
   please refer to the following information/video to test our project out in remix unless you have the sufficient Goerli.
 
 ## Testing the Project
