@@ -144,4 +144,20 @@ If you get an error similar to this:
 ```
 Then run: `npm run clean`
 
-
+## Minimal Viable Product Description
+- Only two users have permissions to move specific snail
+- Only one user can hold/own a snail at a time
+- Once snails reach a threshhold they "win" and are no longer able to move
+- Even if another snail has finished the remaining snails can still move
+- Snails are moved through contract transactions
+- Race times are recorded using the unix time stamp (end time - start time)
+## Known Issues/Unfinished Goals
+- No GUI Frontend
+- Weird temporary gas spikes
+- No convinient way to clear current snails in race
+## Future Goals and Current Status
+- Create a GUI frontend
+- Create a friendly tutorial
+- Create a bigger contract to around the race contract and create a scoreboard
+We need to fully flesh out the large contract before having snail race visuals. 
+The core principles of the race are already implemented, and we can build off of that.
