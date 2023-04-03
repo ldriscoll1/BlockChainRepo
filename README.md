@@ -3,6 +3,17 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
 ## Important Announcement
   Currently due to https://goerlifaucet.com/ only distributing 0.02 eth a day and our project needed 0.15 Goerli to deploy a contract
   please refer to the following information/video to test our project out in remix unless you have the sufficient Goerli.
+  So instead refer to these instructions to test.
+  1. Follow steps outlines in Metamask, Etherscan, and Alchemy sections.
+  2. Go to remix.ethereum.org
+  3. Once at the menu click load from the GitHub button and enter this [link](https://github.com/ldriscoll1/BlockChainRepo/blob/main/contracts/SnailContract.sol) to load the contract into remix.
+  4. Go to SnailContract.sol in the folder view (github/ldriscoll1/BlockChainRepo/contracts/SnailContract.sol)
+  5. Go to the third icon in the left dashboard called solidity compiler and click the compile SnailContract.sol
+  6. After it has been compiled go to the fourth icon in the left dashboard called deploy and run transactions and click the dropdown arrow next to the orange deploy button.
+  7. Enter '1' for the snail count and ["_Address1_","_Address2_"] replacing _Address1/2_ with their respective account addresses.
+  8. Press the transact button to deploy the contract
+  9. Scroll down to the deployed contract and click the drop down array (Here you can interact with the contract)
+  10. If the user you want to call the transferSnail command, some ether is needed for the gas fee (you can change the value if you scroll above)
 
 ## Testing the Project
   
