@@ -9,8 +9,13 @@ task('deploy', 'Deploys provided contract to specified network')
     const addresses = taskArgs.addresses.split(",");
     console.log("Deploying contract..." + taskArgs.contract + " " + taskArgs.snailcount + " " + taskArgs.addresses + " ");
     const CONTRACT = await hre.ethers.getContractFactory(taskArgs.contract);
-    const contract = await CONTRACT.deploy(Number(taskArgs.snailcount), addresses);
-
+    let contract;
+    if(taskArgs.contract === "SnailContract"){
+      contract = await CONTRACT.deploy(Number(taskArgs.snailcount), addresses);
+    }
+    else if(taskArgs.contract === "Treasury"){
+      contract = await CONTRACT.deploy();
+    }
     await contract.deployed();
     console.log('\nContract deployed to:', contract.address);
     // await hre.run("verify:verify", {
