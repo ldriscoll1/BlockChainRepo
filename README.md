@@ -2,10 +2,10 @@
 This is the ReadMe for the Snail Race Project it will contain all the information needed to run the project.
 ## Important Announcement
   Currently due to https://goerlifaucet.com/ only distributing 0.02 eth a day and our project needed 0.15 Goerli to deploy a contract
-  please refer to the following information/video to test our project out in remix, a virtual contract environment unless you have the sufficient Goerli.
+  please refer to the following information/video to test our project out in remix, a virtual contract environment unless you have the sufficient Goerli. In order to fix this we will be switching over to Sepolia as our test network.
   So instead refer to these instructions to test.
   1. Follow steps outlines in Metamask, Etherscan, and Alchemy sections.
-  2. Go to remix.ethereum.org
+  2. Go to [link](remix.ethereum.org)
   3. Once at the menu click load from the GitHub button and enter this [link](https://github.com/ldriscoll1/BlockChainRepo/blob/main/contracts/SnailContract.sol) to load the contract into remix.
   4. Go to SnailContract.sol in the folder view (github/ldriscoll1/BlockChainRepo/contracts/SnailContract.sol)
   5. Go to the third icon in the left dashboard called solidity compiler and click the compile SnailContract.sol
@@ -68,6 +68,7 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   - Fill in the .env file with the information from the previous steps
   ```
   GOERLI_PRIVATE_KEY= MetaMask Private Key
+  SEPOLIA_PRIVATE_KEY= MetaMask Private Key
   BNB_TESTNET_PRIVATE_KEY= MetaMask Private Key
   BNB_MAINNET_PRIVATE_KEY= MetaMask Private Key
   MORDOR_PRIVATE_KEY= MetaMask Private Key

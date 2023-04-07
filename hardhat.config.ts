@@ -55,6 +55,10 @@ module.exports = {
       chainId: 5,
       accounts: [process.env.GOERLI_PRIVATE_KEY],
     },
+    sepolia: {
+      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
+      accounts: [process.env.SEPOLIA_PRIVATE_KEY]
+    },
     bscTestnet: {
       url: 'https://data-seed-prebsc-1-s1.binance.org:8545',
       chainId: 97,
@@ -75,6 +79,7 @@ module.exports = {
   etherscan: {
     apiKey: {
       goerli: `${process.env.ETHERSCAN_API_KEY}`,
+      sepolia: `${process.env.ETHERSCAN_API_KEY}`,
       bscTestnet: `${process.env.BSCSCAN_API_KEY}`,
       bsc: `${process.env.BSCSCAN_API_KEY}`,
     },
