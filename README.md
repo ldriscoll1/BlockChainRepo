@@ -1,9 +1,8 @@
 # README
 This is the ReadMe for the Snail Race Project it will contain all the information needed to run the project.
 ## Important Announcement
-  Currently due to https://goerlifaucet.com/ only distributing 0.02 eth a day and our project needed 0.15 Goerli to deploy a contract
-  please refer to the following information/video to test our project out in remix, a virtual contract environment unless you have the sufficient Goerli. In order to fix this we will be switching over to Sepolia as our test network.
-  So instead refer to these instructions to test.
+Due to a problem with the Goerli Eth faucet not giving enough Eth for the MVP we have to use the remix environment in order to test the product. These Steps are shown here. We switched to the Sepolia TestNet for the future so if you want to test on that the steps are shown below the Remix Section. 
+### Testing with Remix Virtual Environment
   1. Follow steps outlines in Metamask, Etherscan, and Alchemy sections.
   2. Go to [link](remix.ethereum.org)
   3. Once at the menu click load from the GitHub button and enter this [link](https://github.com/ldriscoll1/BlockChainRepo/blob/main/contracts/SnailContract.sol) to load the contract into remix.
@@ -14,21 +13,28 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   8. Press the transact button to deploy the contract
   9. Scroll down to the deployed contract and click the drop down array (Here you can interact with the contract)
   10. View this video for a tutorial [video](https://youtu.be/XIcpeXZJlLI)
-### Testing the Contract with Remix
+
+  ### Test Cases
   1. Do 5 Transactions back and forth with one snail and check if it is a winner.
   2. Try to transfer a snail that you currently own.
   3. Try to transfer a snail that has won.
   4. Try to transfer a snail with an address(a third extra address) that is not a potential owner.
   5. Deploy a contract with 2 snails and 4 addresses and try to move each of the snails with their respective addresses Snail at snailID 0 can be moved by the first two addresses and snail at snailID 1 can be moved by the second two addresses.
-
-## Testing the Project
   
+## Testing the Project
+  ### Steps
   In order to test the project you will need to follow some steps:
   - Follow the Account Setup section
   - Follow the Required Steps for Testing and Deployment
   - Run `npm run compile`
   - Follow the steps in the Hardhat Tasks and Deploying the Project section
   - Follow the video tutorial to test the project using Etherscan and Metamask
+  ### Test Cases
+  1. Do 5 Transactions back and forth with one snail and check if it is a winner.
+  2. Try to transfer a snail that you currently own.
+  3. Try to transfer a snail that has won.
+  4. Try to transfer a snail with an address(a third extra address) that is not a potential owner.
+  5. Deploy a contract with 2 snails and 4 addresses and try to move each of the snails with their respective addresses Snail at snailID 0 can be moved by the first two addresses and snail at snailID 1 can be moved by the second two addresses.
 
 ## Account Setup
   ### Metamask
@@ -58,7 +64,7 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   - Create an account
   - Create a new app
   - For the chain select Ethereum
-  - For the network select Goerli
+  - For the network select Sepolia
   - Open the app from dashboard
   - Click "VIEW KEY" to get the API key
 
@@ -100,6 +106,7 @@ Configured Networks:
 
 - Localhost
 - Goerli. Faucet: https://goerlifaucet.com/
+- Sepolia Faucet: https://sepoliafaucet.com/
 - BSC Testnet. Faucet: https://testnet.bnbchain.org/faucet-smart
 - BSC.
 - Mordor. Faucet: https://easy.hebeswap.com/#/faucet
@@ -118,12 +125,12 @@ npm run test # runs unit tests via Forge
 To deploy your contract use
 
 ```
-npx hardhat --network goerli deploy --contract <contract_name> --snailcount <constructor_argument> --addresses <constructor_argument>
+npx hardhat --network sepolia deploy --contract <contract_name> --snailcount <constructor_argument> --addresses <constructor_argument>
 ```
 The snailCount argument takes in the number of snails you want to create. The addresses argument takes in the addresses for the owners of these snails. This is a comma separated list of addresses.
 For example:
 ```
-npx hardhat --network goerli deploy --contract SnailContract --snailcount 1 --addresses "0x32fb216dED836aBAa8af2F6Dda2629b30b768aF3","0x9298f815C95DDf79c9724B5e30d52DB292c96086"
+npx hardhat --network sepolia deploy --contract SnailContract --snailcount 1 --addresses "0x32fb216dED836aBAa8af2F6Dda2629b30b768aF3","0x9298f815C95DDf79c9724B5e30d52DB292c96086"
 ```
 This example creates one snail that has two potential owners that have the addresses 0x32fb216dED836aBAa8af2F6Dda2629b30b768aF3 and 0x9298f815C95DDf79c9724B5e30d52DB292c96086. Make sure quotations are straight " instead of ”.
 
@@ -139,7 +146,7 @@ Note* Currently you need about 0.15 eth in your first account to succesfully sen
 To "verify" your contract run
 
 ```
-npx hardhat --network goerli verify --constructor-args arguments.js <deployed_contract_address> 
+npx hardhat --network sepolia verify --constructor-args arguments.js <deployed_contract_address> 
 ```
 
 In order to verify your contract you will need to update arguments.js to reflect your input, an example of the arguments.js file is provided in arguments.js.
