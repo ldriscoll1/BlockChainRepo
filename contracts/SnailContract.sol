@@ -18,64 +18,99 @@ contract SnailContract {
         uint location;
         address currentOwner;
         address[2] possibleOwners;
-        bool isWinner;
+        bool isDone;
         uint256 startingTimeStamp;
         uint256 endingTimeStamp;
         uint256 raceTime;
     }
     //Constant to represent how long the race is
-    uint256 private RACE_LENGTH = 5;
+    uint256 private RACE_LENGTH;
     //Array of Snails that are in play
-    Snail[] public snails;
-    //Constructor that creates the game according to the specified snail count
-    constructor(uint _snailCount, address[] memory _playerAddresses) {
-        require(_snailCount > 0, "Snail count must be greater than 0");
-        require(_playerAddresses.length % 2 == 0, "Player count needs to be even");
-        require(_playerAddresses.length != 0, "Player count needs to greater than 0");
-        //Create Snails
-        //Adds the owners in the order they are given so the first snail gets the first two addresses and so on
-        uint addrPointer = 0;
-        for (uint i = 0; i < _snailCount; i++) {
-            Snail memory snail = Snail(0, _playerAddresses[addrPointer], [_playerAddresses[addrPointer],_playerAddresses[addrPointer+1]], false, getTimeStamp(), 0, 0);
-            snails.push(snail);
-            addrPointer += 2;
-        }
+    Snail public snail;
+    // Constructor that creates the snail according to the race count
+    constructor(uint256 _raceLength) {
+        //Create Snail
+        snail = Snail(0, address(0), [address(0),address(1)], false, getTimeStamp(), 0, 0);
+        RACE_LENGTH = _raceLength;
     }
+
+    //----- Getters -----//
+
     //Returns the snail at the specified index
-    function getSnail(uint _snailId) public view returns (uint, address,address,address,bool,uint256,uint256,uint256) {
-        Snail memory snail = snails[_snailId];
-        return (snail.location, snail.currentOwner, snail.possibleOwners[0], snail.possibleOwners[1], snail.isWinner, snail.startingTimeStamp, snail.endingTimeStamp, snail.raceTime);
+    function getSnail() public view returns (uint, address,address,address,bool,uint256,uint256,uint256) {
+        return (snail.location, snail.currentOwner, snail.possibleOwners[0], snail.possibleOwners[1], snail.isDone, snail.startingTimeStamp, snail.endingTimeStamp, snail.raceTime);
     }
     //Returns the current owner of the snail
-    function getSnailOwner(uint _snailId) public view returns (address){
-        Snail memory snail = snails[_snailId];
+    function getSnailOwner() private view returns (address){
         return snail.currentOwner;
     }
-    //Transfers the snail to the specified address incrementing the location by 1
-    function transferSnail(uint _snailId) public {
-        Snail storage snail = snails[_snailId];
-        //Checks if the addresses are valid
-        require(snail.currentOwner != msg.sender, "You currently own this snail");
-        require((snail.possibleOwners[0] == msg.sender || snail.possibleOwners[1] == msg.sender), "You need to be a possible owner this snail");
-        require(!isWinner(_snailId), "This snail has already won");
-        //Performs the transfer
-        snail.currentOwner = msg.sender;
-        snail.location++;
-        //If the snail reaches the end it will be marked as a winner and the times will be given
-        if(isWinner(_snailId)) {
-            snail.endingTimeStamp = getTimeStamp();
-            snail.raceTime = snail.endingTimeStamp - snail.startingTimeStamp;
-            snail.isWinner = true;
-        }
-    }
-    //Function that checks if the snail is a winner
-    function isWinner(uint _snailId) private view returns (bool) {
-        Snail memory snail = snails[_snailId];
-        return snail.location >= RACE_LENGTH;
+    //Returns the possible owners of the snail
+    function getPossibleOwners() public view returns (address[2] memory){
+        return snail.possibleOwners;
     }
     //Function that returns the current time stamp
     function getTimeStamp() private view returns (uint256){
         return block.timestamp;
     }
+    //Returns the current location of the snail
+    function getSnailLocation() public view returns (uint){
+        return snail.location;
+    }
+    //Returns if the snail is done or not
+    function getSnailDone() public view returns (bool){
+        return snail.isDone;
+    }
+    //Returns the race time of the snail
+    function getSnailRaceTime() public view returns (uint256){
+        return snail.raceTime;
+    }
 
+    //----- Setters -----//
+
+    //Sets the possible owners of the snail
+    function setPossibleOwners(address _owner1, address _owner2) public {
+        //Checks if the addresses are valid
+        //Only on Default Addresses
+        require((_owner1 == address(0) && _owner2 == address(1)), "You need to be a possible owner this snail");
+
+        snail.possibleOwners[0] = _owner1;
+        snail.possibleOwners[1] = _owner2;
+    }
+    //Sets the start time of the snail
+    function setStartTime() public{
+        snail.startingTimeStamp = getTimeStamp();
+    }
+    //----- Functions -----//
+
+    //Transfers the snail to the specified address incrementing the location by 1
+    function transferSnail() public {
+        //Checks if the addresses are valid
+        //No Default Addresses
+        require((snail.possibleOwners[0] != address(0) || snail.possibleOwners[1] != address(1)), "You need to be a possible owner this snail");
+        //Needs to be the current owner to transfer
+        require(snail.currentOwner != msg.sender, "You currently own this snail");
+        //Needs to be a possible owner to transfer
+        require((snail.possibleOwners[0] == msg.sender || snail.possibleOwners[1] == msg.sender), "You need to be a possible owner this snail");
+        //Needs to not be a winner to transfer
+        require(!isWinner(), "This snail has already won");
+
+        //Performs the transfer
+        snail.currentOwner = msg.sender;
+        snail.location++;
+
+        //If the snail reaches the end it will be marked as a winner and the times will be given
+        if(isWinner()) {
+            snail.endingTimeStamp = getTimeStamp();
+            snail.raceTime = snail.endingTimeStamp - snail.startingTimeStamp;
+            snail.isDone = true;
+        }
+    }
+    //Function that checks if the snail is a winner
+    function isWinner() public view returns (bool) {
+        return snail.location >= RACE_LENGTH;
+    }
+    //Function that resets the snail
+    function resetSnail() public {
+        snail = Snail(0, address(0), [address(0),address(1)], false, getTimeStamp(), 0, 0);
+    }
 }
