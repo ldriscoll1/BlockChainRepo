@@ -71,10 +71,11 @@ contract SnailContract {
     function setPossibleOwners(address _owner1, address _owner2) public {
         //Checks if the addresses are valid
         //Only on Default Addresses
-        require((_owner1 == address(0) && _owner2 == address(1)), "You need to be a possible owner this snail");
+        require((snail.possibleOwners[0] == address(0) && snail.possibleOwners[1] == address(1)), "You need to be a default snail set this snail");
 
         snail.possibleOwners[0] = _owner1;
         snail.possibleOwners[1] = _owner2;
+        snail.currentOwner = snail.possibleOwners[0];
     }
     //Sets the start time of the snail
     function setStartTime() public{
@@ -83,19 +84,18 @@ contract SnailContract {
     //----- Functions -----//
 
     //Transfers the snail to the specified address incrementing the location by 1
-    function transferSnail() public {
+    function transferSnail(address currentUser) public {
         //Checks if the addresses are valid
         //No Default Addresses
-        require((snail.possibleOwners[0] != address(0) || snail.possibleOwners[1] != address(1)), "You need to be a possible owner this snail");
+        require((snail.possibleOwners[0] != address(0) && snail.possibleOwners[1] != address(1)), "You cannot interact with a default snail");
         //Needs to be the current owner to transfer
-        require(snail.currentOwner != msg.sender, "You currently own this snail");
+        require(snail.currentOwner != currentUser, "You currently own this snail");
         //Needs to be a possible owner to transfer
-        require((snail.possibleOwners[0] == msg.sender || snail.possibleOwners[1] == msg.sender), "You need to be a possible owner this snail");
+        require((snail.possibleOwners[0] == currentUser || snail.possibleOwners[1] == currentUser), "You need to be a possible owner this snail");
         //Needs to not be a winner to transfer
         require(!isWinner(), "This snail has already won");
-
         //Performs the transfer
-        snail.currentOwner = msg.sender;
+        snail.currentOwner = currentUser;
         snail.location++;
 
         //If the snail reaches the end it will be marked as a winner and the times will be given
