@@ -27,11 +27,26 @@ contract SnailRace{
     mapping(address => uint256) public playerSnail;
     //SnailRace has a method to reset a snail
     function resetSnail(uint256 _snailID) public {
+        //Remove players from the mapping
+
+        address[2] memory owners = snails[_snailID].getPossibleOwners();
+        delete playerSnail[owners[0]];
+        delete playerSnail[owners[1]];
+        
         snails[_snailID].resetSnail();
     }
     //SnailRace has a run function which transfers the snail
     function run(uint256 _snailID) public {
         snails[_snailID].transferSnail(msg.sender);
+        if(snails[_snailID].getSnailDone() == true){
+            //If done add to the leaderboard and reset the snail
+            addToLeaderboard(snails[_snailID]);
+            resetSnail(_snailID);
+        }
+    }
+    //SnailRace has a run function which transfers the snail
+    function run(uint256 _snailID,address _userAddress) public {
+        snails[_snailID].transferSnail(_userAddress);
         if(snails[_snailID].getSnailDone() == true){
             //If done add to the leaderboard and reset the snail
             addToLeaderboard(snails[_snailID]);
@@ -80,11 +95,16 @@ contract SnailRace{
         }
     }
     //SnailRace has a function to get each leaderboardEntry
-    function getEntry(uint256 _entryID) public view returns(address,address,uint256){
-        return (leaderboard[_entryID].ownerOne, leaderboard[_entryID].ownerTwo, leaderboard[_entryID].raceTime);
+    function getLeaderboardEntry(uint256 _entryID) public view returns(LeaderboardEntry memory){
+        return leaderboard[_entryID];
     }
+    
     //SnailRace has a function to get each Snail
     function getSnail(uint256 _snailID) public view returns(uint, address,address,address,bool,uint256,uint256,uint256){
         return snails[_snailID].getSnail();
+    }
+    //SnailRace has a function to get the leaderboard length
+    function getLeaderboardLength() public view returns(uint256){
+        return leaderboard.length;
     }
 }
