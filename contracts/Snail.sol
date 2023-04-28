@@ -4,7 +4,7 @@ pragma solidity ^0.8.4;
 //Holds the location on a snail and the address of the owner
 //Whenever the ownership changes the snails location is increased by 1
 //If the snail reaches a certain location it will be considered a winner
-contract SnailContract {
+contract Snail {
     //Each Snail has a set of qualities
     /* 
     * Location, an int that holds the position the snail is at in the race(similar to how many meters it has moved since the start)
@@ -14,7 +14,7 @@ contract SnailContract {
     * startingTimeStamp, the time stamp of when the snail was created
     * endingTimeStamp, the time stamp of when the snail reached the finish line
     */
-    struct Snail {
+    struct SnailObj {
         uint location;
         address currentOwner;
         address[2] possibleOwners;
@@ -26,11 +26,11 @@ contract SnailContract {
     //Constant to represent how long the race is
     uint256 private RACE_LENGTH;
     //Array of Snails that are in play
-    Snail public snail;
+    SnailObj public snail;
     // Constructor that creates the snail according to the race count
     constructor(uint256 _raceLength) {
         //Create Snail
-        snail = Snail(0, address(0), [address(0),address(1)], false, getTimeStamp(), 0, 0);
+        snail = SnailObj(0, address(0), [address(0),address(1)], false, getTimeStamp(), 0, 0);
         RACE_LENGTH = _raceLength;
     }
 
@@ -111,6 +111,6 @@ contract SnailContract {
     }
     //Function that resets the snail
     function resetSnail() public {
-        snail = Snail(0, address(0), [address(0),address(1)], false, getTimeStamp(), 0, 0);
+        snail = SnailObj(0, address(0), [address(0),address(1)], false, getTimeStamp(), 0, 0);
     }
 }

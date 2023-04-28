@@ -5,17 +5,28 @@ import "forge-std/Test.sol";
 import "contracts/SnailRace.sol";
 
 contract ContractTest is Test {
+    //Tests if the game can be completed
+    function testCompleteGame() public {
+        SnailRace snailrace = new SnailRace(1, 1, 2);
+        snailrace.assignPlayers(address(1), address(2), 0);
+        snailrace.run(address(2));
+        snailrace.run(address(1));
+        assertEq(snailrace.getLeaderboardLength(), 1);
+    }
     function testLeaderboard() public {
         SnailRace snailrace = new SnailRace(3, 2, 2);
         snailrace.assignPlayers(address(1), address(2), 0);
         snailrace.assignPlayers(address(3), address(4), 1);
         snailrace.assignPlayers(address(5), address(6), 2);
-        snailrace.run(0, address(2));
-        snailrace.run(1, address(4));
-        snailrace.run(2, address(6));
-        snailrace.run(0, address(1));
-        snailrace.run(1, address(3));
-        snailrace.run(2, address(5));
+        //Make sure the leaderboard is empty
+        assertEq(snailrace.getLeaderboardLength(), 0);
+
+        snailrace.run(address(2));
+        snailrace.run(address(4));
+        snailrace.run(address(6));
+        snailrace.run(address(1));
+        snailrace.run(address(3));
+        snailrace.run(address(5));
         //Make sure the leaderboard is full
         assertEq(snailrace.getLeaderboardLength(), 2);
         //Make sure the leaderboard is sorted
@@ -26,15 +37,22 @@ contract ContractTest is Test {
         assertEq(snailrace.getLeaderboardEntry(1).ownerOne, address(3));
         assertEq(snailrace.getLeaderboardEntry(1).ownerTwo, address(4));
     }
-    // //Tests if the snails get reset after completing the race
-    // function testReset() public{
-    //     SnailRace snailrace = new SnailRace(1, 2, 1);
-    //     snailrace.assignPlayers(address(1), address(2), 0);
-    //     snailrace.run(0, address(2));
-    //     snailrace.run(0, address(1));
-    //     assertEq(snailrace.getLeaderboardLength(), 1);
-    //     assertEq(snailrace.playerSnail[address(1)], 0);
-    //     assertEq(snailrace.playerSnail[address(2)], 0);
-    // }
+    //Tests if the address mapping is set correctly
+    function testAssignMapping() public {
+        SnailRace snailrace = new SnailRace(1, 1, 1);
+        snailrace.assignPlayers(address(1), address(2), 0);
+        assertEq(snailrace.getSnailFromAddress(address(1)), 1);
+        assertEq(snailrace.getSnailFromAddress(address(2)), 1);
+    }
+    //Tests if the address mapping is reset correctly
+    function testResetMapping() public {
+        SnailRace snailrace = new SnailRace(1, 1, 2);
+        snailrace.assignPlayers(address(1), address(2), 0);
+        snailrace.run(address(2));
+        snailrace.run(address(1));
+        assertEq(snailrace.getSnailFromAddress(address(1)), 0);
+        assertEq(snailrace.getSnailFromAddress(address(2)), 0);
+
+    }
     
 }
