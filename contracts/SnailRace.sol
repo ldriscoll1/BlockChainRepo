@@ -111,10 +111,10 @@ contract SnailRace{
         }
     }
     //SnailRace has a function to get each leaderboardEntry
-    function getLeaderboardEntry(uint256 _entryID) public view returns(address, address, uint256){
+    function getLeaderboardEntry(uint256 _entryID) public view returns(LeaderboardEntry memory){
         //Require input to be in bounds of the leaderboard array
         require(_entryID < leaderboard.length, "Entry ID is out of bounds");
-        return (leaderboard[_entryID].ownerOne, leaderboard[_entryID].ownerTwo, leaderboard[_entryID].raceTime);
+        return (leaderboard[_entryID]);
     }
     
     //SnailRace has a function to get each Snail

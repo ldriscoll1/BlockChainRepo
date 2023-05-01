@@ -39,5 +39,11 @@ contract ContractTest is Test {
         assertEq(snail.getSnailLocation(), 0);
 
     }
+    //Test to make sure same owner doesnt work
+    function testSameOwner() public {
+        Snail snail = new Snail(1);
+        snail.setPossibleOwners(address(1), address(1));
+    }
+
     
 }

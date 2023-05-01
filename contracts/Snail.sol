@@ -72,6 +72,9 @@ contract Snail {
         //Checks if the addresses are valid
         //Only on Default Addresses
         require((snail.possibleOwners[0] == address(0) && snail.possibleOwners[1] == address(1)), "You need to be a default snail set this snail");
+        //Addresses cannot be the same
+        require(_owner1 != _owner2, "You cannot set the same address as a possible owner");
+
 
         snail.possibleOwners[0] = _owner1;
         snail.possibleOwners[1] = _owner2;

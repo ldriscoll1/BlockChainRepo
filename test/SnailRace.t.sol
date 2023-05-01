@@ -9,8 +9,8 @@ contract ContractTest is Test {
     function testCompleteGame() public {
         SnailRace snailrace = new SnailRace(1, 1, 2);
         snailrace.assignPlayers(address(1), address(2), 0);
-        snailrace.run(address(2));
-        snailrace.run(address(1));
+        snailrace.runTransaction(address(2));
+        snailrace.runTransaction(address(1));
         assertEq(snailrace.getLeaderboardLength(), 1);
     }
     function testLeaderboard() public {
@@ -21,12 +21,12 @@ contract ContractTest is Test {
         //Make sure the leaderboard is empty
         assertEq(snailrace.getLeaderboardLength(), 0);
 
-        snailrace.run(address(2));
-        snailrace.run(address(4));
-        snailrace.run(address(6));
-        snailrace.run(address(1));
-        snailrace.run(address(3));
-        snailrace.run(address(5));
+        snailrace.runTransaction(address(2));
+        snailrace.runTransaction(address(4));
+        snailrace.runTransaction(address(6));
+        snailrace.runTransaction(address(1));
+        snailrace.runTransaction(address(3));
+        snailrace.runTransaction(address(5));
         //Make sure the leaderboard is full
         assertEq(snailrace.getLeaderboardLength(), 2);
         //Make sure the leaderboard is sorted
@@ -48,8 +48,8 @@ contract ContractTest is Test {
     function testResetMapping() public {
         SnailRace snailrace = new SnailRace(1, 1, 2);
         snailrace.assignPlayers(address(1), address(2), 0);
-        snailrace.run(address(2));
-        snailrace.run(address(1));
+        snailrace.runTransaction(address(2));
+        snailrace.runTransaction(address(1));
         assertEq(snailrace.getSnailFromAddress(address(1)), 0);
         assertEq(snailrace.getSnailFromAddress(address(2)), 0);
 
