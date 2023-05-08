@@ -1,5 +1,11 @@
 # README
-This is the ReadMe for the Snail Race Project it will contain all the information needed to run the project.
+- This is the ReadMe for the Snail Race Project it will contain all the information needed to run the project.
+- This Project is For CPSC 406 Algorithm Analysis and CPSC 298 Introduction to Smart Contracts
+- The group members are Ryley Jue, Thomas Ogawa and Luke Driscoll
+- This project is a blockchain full stack educational game to teach the user about smart contracts and the basics of blockchain. One big thing about our project is that we had to deploy it on the sepolia test net because the goerli faucet does not give enough funds to deploy the project.
+- Here is a link to a deployed version of our [Contract](https://sepolia.etherscan.io/address/0x743364668529f67bca0e2749f83b96b35f4fd3d3)
+- Here is a link to the slides for our project [Slides](https://docs.google.com/presentation/d/1CLl9VYfL6Wm6Pr6xaaYWHRrpmnLRciOAzzWexslsfpg/edit?usp=sharing)
+
   
 ## Testing the Project
   ### Steps
@@ -17,10 +23,10 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
 
 ## Account Setup
   ### Metamask
-  - Go to metamask.io and download the extension
+  - Go to [Metamask](metamask.io) and download the extension
   - Create a new wallet
   - Secure the wallet and save the secret recovery phrase somewhere safe
-  - Change the network to Goerli Test Network (network select is at the top)
+  - Change the network to Sepolia Test Network (network select is at the top)
     - Might need to go to settings > advanced > show test networks.
   
 
@@ -49,8 +55,10 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
 
   ### Getting Repo Setup
   - Clone the repo
-  - Change the .env.example to .env
+  - Change the `.env.example` to `.env`
+  
   - Fill in the .env file with the information from the previous steps
+    - Configure `.env` file -> see [`.env.example`](https://github.com/alexhkurz/introduction-to-smart-contracts/blob/main/.env.example). (Go to your Metamask, follow "Goerli test network->Account details->Export private key" and enter the private key in your `.env` (for the `PRIVATE_KEY` variables); make an account with [alchemy](https://www.alchemy.com/), create a test app for the Ethereum chain on the Goerli network and fill in the value for `ALCHEMY_API_KEY`.) Note* May need to open up file in VSCode to edit .env file.
   ```
   GOERLI_PRIVATE_KEY= MetaMask Private Key
   SEPOLIA_PRIVATE_KEY= MetaMask Private Key
@@ -64,31 +72,17 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   REPORT_GAS=
   REPORT_SIZE=
   ```
+  
+
+  Install Foundry -> https://book.getfoundry.sh/getting-started/installation.html
+  forge install # install project foundry modules
   - Run `npm i`
   You may need to install node.js
   ->https://kinsta.com/blog/how-to-install-node-js/#1-download-macos-installer
-  
-## Required Steps for Testing and Deployment
+  Configured Networks:
 
-Install Foundry -> https://book.getfoundry.sh/getting-started/installation.html
-
-```
-npm i # install project npm modules
-forge install # install project foundry modules
-```
-
-Configure `.env` file -> see [`.env.example`](https://github.com/alexhkurz/introduction-to-smart-contracts/blob/main/.env.example). (Go to your Metamask, follow "Goerli test network->Account details->Export private key" and enter the private key in your `.env` (for the `PRIVATE_KEY` variables); make an account with [alchemy](https://www.alchemy.com/), create a test app for the Ethereum chain on the Goerli network and fill in the value for `ALCHEMY_API_KEY`.) Note* May need to open up file in VSCode to edit .env file.
-
-This framework has been written to use various testnets and mainnets. Test ETH has been encoded into the tasks for localhost deployment. For testnets, test ETH, BNB, or ETC is required which can be received from their corresponding faucets. An .env is used for running on other networks outside of localhost.
-
-Configured Networks:
-
-- Localhost
-- Goerli. Faucet: https://goerlifaucet.com/
-- Sepolia Faucet: https://sepoliafaucet.com/
-- BSC Testnet. Faucet: https://testnet.bnbchain.org/faucet-smart
-- BSC.
-- Mordor. Faucet: https://easy.hebeswap.com/#/faucet
+  - Localhost
+  - Sepolia Faucet: https://sepoliafaucet.com/
 
 ## NPM Commands
 
@@ -104,14 +98,14 @@ npm run test # runs unit tests via Forge
 To deploy your contract use
 
 ```
-npx hardhat --network sepolia deploy --contract <contract_name> --snailcount <constructor_argument> --addresses <constructor_argument>
+npx hardhat --network sepolia deploy --contract SnailRace --snailcount <constructor_argument> --racelength <constructor_argument> --leaderboardlength <constructor_argument>
 ```
-The snailCount argument takes in the number of snails you want to create. The addresses argument takes in the addresses for the owners of these snails. This is a comma separated list of addresses.
+The snailcount argument takes in the number of snails you want to create. The racelength argument takes in a number which represents the number of transactions needed to complete the race. The leaderboardlength argument takes in a number which represents the number of leaderboard entries shown.
 For example:
 ```
 npx hardhat --network sepolia deploy --contract SnailRace --snailcount 3 --racelength 2 --leaderboardlength 2  
 ```
-This example creates the snailrace with 3 snails, a length of 2 transactions for the race and a leaderboard of 2 entries. If you want to change the argument values please change the values in the arguments.js file to reflect the changes you want to make.
+This example creates the snailrace with 3 snails, a length of 2 transactions for the race and a leaderboard of 2 entries. If you want to change the argument values please change the values in the `arguments.js` file to reflect the changes you want to make.
 
 If you would like to test it simply use your first MetaMask Account and make a second account by clicking on your profile picture and then selecting +create account this will be the second address you input in the command.
 
@@ -128,7 +122,7 @@ To "verify" your contract run
 npx hardhat --network sepolia verify --constructor-args arguments.js <deployed_contract_address> 
 ```
 
-In order to verify your contract you will need to update arguments.js to reflect your input, an example of the arguments.js file is provided in arguments.js.
+In order to verify your contract you will need to update `arguments.js` to reflect your input, an example of the `arguments.js` file is provided in `arguments.js`.
 These arguments must be the same as the ones you used to deploy your contract.
 
 If you get `Error [...] no API token was found` go to [Etherscan](https://etherscan.io/), create an account, get an API-key and add it to your `.env` 
