@@ -66,25 +66,17 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
   REPORT_GAS=
   REPORT_SIZE=
   ```
+  
+
+  Install Foundry -> https://book.getfoundry.sh/getting-started/installation.html
+  forge install # install project foundry modules
   - Run `npm i`
   You may need to install node.js
   ->https://kinsta.com/blog/how-to-install-node-js/#1-download-macos-installer
-  
-## Required Steps for Testing and Deployment
+  Configured Networks:
 
-Install Foundry -> https://book.getfoundry.sh/getting-started/installation.html
-
-```
-npm i # install project npm modules
-forge install # install project foundry modules
-```
-
-This framework has been written to use various testnets and mainnets. Test ETH has been encoded into the tasks for localhost deployment. For testnets, test ETH, BNB, or ETC is required which can be received from their corresponding faucets. An .env is used for running on other networks outside of localhost.
-
-Configured Networks:
-
-- Localhost
-- Sepolia Faucet: https://sepoliafaucet.com/
+  - Localhost
+  - Sepolia Faucet: https://sepoliafaucet.com/
 
 ## NPM Commands
 
