@@ -1,0 +1,86 @@
+/* Navigation Bar */
+.navbar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #7c7f65;
+	width: 100%;
+}
+.navbar li {
+	float: left;
+}
+
+.navbar a {
+	display: block;
+	color: #eae0d5;
+	font-size: large;
+	font-weight: 300;
+	text-align: center;
+	padding: 18px 20px;
+	text-decoration: none;
+}
+
+.navbar a:hover {
+	background-color: #9e9885;
+}
+
+/* buttons for racing */
+.buttonscontainer {
+	margin: 20px;
+}
+
+.refreshButton{
+	background-color: lightpink;
+	color: white;
+	border: none;
+	padding: 6px 10px;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 6px;
+	display: inline-block;
+}
+
+.refreshButton:hover {
+	background-color: #ec655c;
+}
+
+.refreshButton:disabled {
+	background-color: #eae0d5;
+}
+
+/* racetrack centered track*/
+.racetrack {
+	display: flex;
+	justify-content: center;
+}
+
+.racetrack canvas {
+	border: 6px solid black;
+}
+
+/* Leaderboard Table */
+.leaderboard {
+	margin: 30px
+}
+
+.leaderboard table {
+	border-collapse: collapse;
+	width: 100%;
+	border: black 1px solid;
+	overflow-x: auto;
+}
+
+.leaderboard th, .leaderboard td {
+	text-align: left;
+	padding: 8px;
+	border: black 1px solid;
+}
+
+.leaderboard th {
+	background-color: #BEA8AA;
+}
+
+.leaderboard tr:nth-child(even) {
+	background-color: #CFC7D2;
+}
