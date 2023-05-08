@@ -4,6 +4,7 @@
 - The group members are Ryley Jue, Thomas Ogawa and Luke Driscoll
 - This project is a blockchain full stack educational game to teach the user about smart contracts and the basics of blockchain. One big thing about our project is that we had to deploy it on the sepolia test net because the goerli faucet does not give enough funds to deploy the project.
 - Here is a link to a deployed version of our [Contract](https://sepolia.etherscan.io/address/0x743364668529f67bca0e2749f83b96b35f4fd3d3)
+- Here is a link to the slides for our project [Slides](https://docs.google.com/presentation/d/1CLl9VYfL6Wm6Pr6xaaYWHRrpmnLRciOAzzWexslsfpg/edit?usp=sharing)
 
   
 ## Testing the Project
