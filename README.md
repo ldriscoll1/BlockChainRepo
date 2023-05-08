@@ -17,7 +17,7 @@ This is the ReadMe for the Snail Race Project it will contain all the informatio
 
 ## Account Setup
   ### Metamask
-  - Go to metamask.io and download the extension
+  - Go to [Metamask](metamask.io) and download the extension
   - Create a new wallet
   - Secure the wallet and save the secret recovery phrase somewhere safe
   - Change the network to Sepolia Test Network (network select is at the top)
