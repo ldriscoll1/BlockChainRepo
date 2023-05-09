@@ -97,29 +97,10 @@ const contractABI = [
 	},
 ];
   
-// Provider
-// const provider = new ethers.getDefaultProvider("sepolia", {
-// 	etherscan: process.env.ETHERSCAN_API_KEY,
-// 	alchemy: process.env.ALCHEMY_API_KEY,
-// });
 const node = "https://rpc.sepolia.org";
 const provider = new ethers.providers.JsonRpcProvider(node);
 
 let wallet = new ethers.Wallet(process.env.NEXT_PUBLIC_METAMASK_PRIVATE_KEY, provider);
-
-// Signer
-// const signer = new ethers.Wallet(
-// 	process.env.METAMASK_PRIVATE_KEY,
-// 	provider
-// );
-
-// Contract
-
-// export const snail_game_contract = new ethers.Contract(
-// 	contractAddress,
-// 	contractABI,
-// 	provider
-// );
 
 export const snail_game_contract = new ethers.Contract(
 	contractAddress,
