@@ -3,6 +3,8 @@ import { snail_game_contract } from "@../../util/contractdetails";
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
+	//the current frontend handles 3 snails, but if you want to add more or less you need to change the usestates and the canvas drawing
+	//WARNING this is not exactly recommended if you do not understand html canvas or next js
 	const [snailDistance1, setSnailDistance1] = useState(0);
 	const [snailDistance2, setSnailDistance2] = useState(0);
 	const [snailDistance3, setSnailDistance3] = useState(0);
@@ -38,7 +40,6 @@ export default function Home() {
 		setButtonDisabled(false);
 		setRefreshButton("Refresh");
 	}
-
 
 
 	useEffect(() => {

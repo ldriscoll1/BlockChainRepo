@@ -1,6 +1,8 @@
 const { ethers } = require("ethers");
 
+//change this to the contract address of your deployed contract
 const contractAddress = "0x743364668529f67bCa0e2749f83B96b35f4fD3d3";
+//change this if you changed any of our contract details
 const contractABI = [
 	{
 	  inputs: [
