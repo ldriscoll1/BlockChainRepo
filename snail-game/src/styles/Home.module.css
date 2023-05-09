@@ -84,3 +84,21 @@
 .leaderboard tr:nth-child(even) {
 	background-color: #CFC7D2;
 }
+
+/* More Info */
+.MoreInfo {
+	margin: 30px;
+}
+
+.MoreInfo li{
+	margin: 10px;
+}
+
+.MoreInfo li a{
+	text-decoration: none;
+	color: black;
+}
+
+.MoreInfo li a:hover{
+	color: blue;
+}
