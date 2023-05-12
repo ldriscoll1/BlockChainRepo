@@ -156,3 +156,6 @@ This function allows the player to run the transaction of taking ownership of th
 ### Leaderboard
 The leaderboard consists of a sorted array of Leaderboard entries. Where these entries consist of the two addresses of the snail and the time it took for the snail to complete the race. In order to access the leaderboard, the user can use the getLeaderboardEntry method, which, when the entry id is entered, returns that specific information for the entry in the leaderboard.
 
+## Running the Frontend
+[Snail Game FrontEnd Directions](https://github.com/ldriscoll1/BlockChainRepo/tree/main/snail-game)
+
