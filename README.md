@@ -3,8 +3,15 @@
 - This Project is For CPSC 406 Algorithm Analysis and CPSC 298 Introduction to Smart Contracts
 - The group members are Ryley Jue, Thomas Ogawa and Luke Driscoll
 - This project is a blockchain full stack educational game to teach the user about smart contracts and the basics of blockchain. One big thing about our project is that we had to deploy it on the sepolia test net because the goerli faucet does not give enough funds to deploy the project.
-- Here is a link to a deployed version of our [Contract](https://sepolia.etherscan.io/address/0x743364668529f67bca0e2749f83b96b35f4fd3d3)
-- Here is a link to the slides for our project [Slides](https://docs.google.com/presentation/d/1CLl9VYfL6Wm6Pr6xaaYWHRrpmnLRciOAzzWexslsfpg/edit?usp=sharing)
+- Resources
+  - Demo Links  
+    - Link to our deployed version of our [Demo Contract](https://sepolia.etherscan.io/address/0x743364668529f67bca0e2749f83b96b35f4fd3d3)
+    - Link to our deployed version of our [Demo FrontEnd](https://snail-game.netlify.app)
+    - Link to a demo of the project running using Etherscan and our FrontEnd [Demo Video](https://www.youtube.com/watch?v=M2O4ze4Xh0E) 
+  - Presentation Link
+    - Link to our slides for the project [Slides](https://docs.google.com/presentation/d/1CLl9VYfL6Wm6Pr6xaaYWHRrpmnLRciOAzzWexslsfpg/edit?usp=sharing)
+  - Contract Link
+    - Link to the final contract(Which is not connected to the frontend)[Contract](https://sepolia.etherscan.io/address/0x45fc0305e8B13F692C0937E1e55257d75099b4cc#code)
 
   
 ## Testing the Project
@@ -17,13 +24,13 @@
   - Follow the video tutorial to test the project using Etherscan and Metamask
   ### Test Cases
   In order to test the project you can run the following commands:
-  - `npm run test` to run the unit tests
+  - `npm run test` to run the unit tests, which will verify if some of the projects most important features are working
 
 
 
 ## Account Setup
   ### Metamask
-  - Go to [Metamask](metamask.io) and download the extension
+  - Go to [Metamask](http://metamask.io) and download the extension
   - Create a new wallet
   - Secure the wallet and save the secret recovery phrase somewhere safe
   - Change the network to Sepolia Test Network (network select is at the top)
