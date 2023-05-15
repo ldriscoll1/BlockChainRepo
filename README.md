@@ -82,7 +82,7 @@
   
 
   Install Foundry -> https://book.getfoundry.sh/getting-started/installation.html
-  forge install # install project foundry modules
+  - Run `forge install` # install project foundry modules(If running on windows use git bash)
   - Run `npm i`
   You may need to install node.js
   ->https://kinsta.com/blog/how-to-install-node-js/#1-download-macos-installer
